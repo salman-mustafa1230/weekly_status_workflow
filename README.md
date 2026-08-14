@@ -1,4 +1,4 @@
-# TPM take-home — Scenario 2: Status synthesis
+# TPM Weekly Status Update — Scenario 2: Status synthesis
 
 This repo is the submission: stakeholder notes plus AI process documentation.
 
@@ -34,7 +34,7 @@ data/*  →  scripts/load_sources.py  →  extracted/raw-bundle.json
 
 | Tool | Role | Why this one |
 |---|---|---|
-| **Cursor** | Authoring this take-home (data, recipe, validator, the critique loop) | Fast file edits next to the model. Not the weekly run path. |
+| **Cursor** | Authoring this weekly status update (data, recipe, validator, the critique loop) | Fast file edits next to the model. Not the weekly run path. |
 | **Claude Code** | The command a teammate or reviewer uses | `/weekly-status` is one slash command. The recipe is a file, not a chat transcript. |
 | **Python** (`scripts/load_sources.py`, `scripts/validate.py`) | Deterministic load + wiring checks | JSON/text in → bundle out, no model. Validator catches invented names and exec/team contract drift. |
 
