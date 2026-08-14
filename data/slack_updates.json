@@ -1,0 +1,97 @@
+{
+  "workspace": "xyz-eng-mock",
+  "export_window": {
+    "from": "2026-08-10T00:00:00+08:00",
+    "to": "2026-08-14T12:00:00+08:00"
+  },
+  "messages": [
+    {
+      "id": "S-1001",
+      "ts": "2026-08-10T09:41:00+08:00",
+      "channel": "#harbor-standup",
+      "author": "Siti Rahman",
+      "role_hint": "Director of Product",
+      "text": "Reminder: sponsor review on Friday still has SG go-live as 28 Aug. Please flag blockers before Thursday EOD. MY stays gated on SG — Farah you are fine to keep MY as on track if you have no local issues."
+    },
+    {
+      "id": "S-1002",
+      "ts": "2026-08-11T10:12:00+08:00",
+      "channel": "#harbor-standup",
+      "author": "Marcus Lim",
+      "role_hint": "Merchant App",
+      "text": "Merchant App consumer is wired in staging. Happy path looks good. I still need Priya's lag numbers before I call this production-ready. MENU-201 on track for 21 Aug if lag work lands."
+    },
+    {
+      "id": "S-1003",
+      "ts": "2026-08-12T11:18:00+08:00",
+      "channel": "#harbor-data",
+      "author": "Wei Ming Tan",
+      "role_hint": "Data",
+      "text": "Closed MENU-241. DAG is live. Backfill is in progress in prod so I'm not leaving an open ticket for a running job."
+    },
+    {
+      "id": "S-1004",
+      "ts": "2026-08-12T14:03:00+08:00",
+      "channel": "#harbor-data",
+      "author": "Arjun Patel",
+      "role_hint": "Data",
+      "text": "Wei — please don't treat MENU-241 as done. I checked the DAG this afternoon: 62% of SG merchants backfilled. At current throughput we finish Saturday 16 Aug, maybe Sunday if dinner peak throttles us. That is a ~2 day slip vs the 11 Aug due date, and the job is still running. Ticket should be In Progress, not Done."
+    },
+    {
+      "id": "S-1005",
+      "ts": "2026-08-12T16:40:00+08:00",
+      "channel": "#harbor-standup",
+      "author": "Jin Park",
+      "role_hint": "Ops",
+      "text": "Playbook draft is in the doc. Rollback steps still need Daniel's sign-off. Side note: last week's stale-menu incident in SG was painful for ops. I don't see a Harbor ticket for the follow-up. Did we ever file one?"
+    },
+    {
+      "id": "S-1006",
+      "ts": "2026-08-13T09:05:00+08:00",
+      "channel": "#eng-sg-catalog",
+      "author": "Marcus Lim",
+      "role_hint": "Merchant App",
+      "text": "Priya is OOO from yesterday through 20 Aug (leave). MENU-255 is still assigned to her and nothing has moved since Mon. Dinner-peak lag is the cutover gate — we do not have a backup owner. Can someone pick this up or we are stuck."
+    },
+    {
+      "id": "S-1007",
+      "ts": "2026-08-13T09:22:00+08:00",
+      "channel": "#eng-sg-catalog",
+      "author": "Daniel Koh",
+      "role_hint": "Tech Lead",
+      "text": "Thanks Marcus. I cannot cover 255 myself this week. Asking Elena Goh (Director of Engineering) for a loaned engineer. Until lag is actually fixed I will not sign 28 Aug."
+    },
+    {
+      "id": "S-1008",
+      "ts": "2026-08-13T11:47:00+08:00",
+      "channel": "#harbor-my",
+      "author": "Farah Hassan",
+      "role_hint": "MY Catalog",
+      "text": "MY weekly: we are green. No MY blockers. Dual-run prep can start whenever SG producer is declared live. Keeping MENU-305 On Track for 18 Sep."
+    },
+    {
+      "id": "S-1009",
+      "ts": "2026-08-13T15:30:00+08:00",
+      "channel": "#harbor-standup",
+      "author": "Arjun Patel",
+      "role_hint": "Data",
+      "text": "Standup update: backfill 71% as of 3pm. Still running. ETA Saturday 16 Aug. If we cut over on 28 Aug with an incomplete backfill, SG merchants not yet migrated will show stale menus — same failure mode as last week."
+    },
+    {
+      "id": "S-1010",
+      "ts": "2026-08-14T08:50:00+08:00",
+      "channel": "#harbor-standup",
+      "author": "Siti Rahman",
+      "role_hint": "Director of Product",
+      "text": "Morning. I need a single status for the 4pm sponsor review. Jira looks mostly healthy (241 done, 305 on track, 280 still 28 Aug). If engineering wants a different date I need it in writing today, not in a sidebar."
+    },
+    {
+      "id": "S-1011",
+      "ts": "2026-08-14T09:10:00+08:00",
+      "channel": "#eng-sg-catalog",
+      "author": "Jin Park",
+      "role_hint": "Ops",
+      "text": "Confirming for anyone writing status: INC-18472 (P2 stale menus, 6 Aug) is resolved as an incident but the follow-up work is not in Jira. Batch pipeline still serving SG. If Harbor status says 'no open incidents' that is technically true and also not the full story."
+    }
+  ]
+}

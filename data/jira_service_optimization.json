@@ -1,0 +1,102 @@
+{
+  "exported_at": "2026-08-14T09:20:00+08:00",
+  "project_key": "SVC",
+  "project_name": "Microservice Optimization",
+  "board": "Platform Efficiency",
+  "active_sprint": {
+    "name": "Opt Sprint 4",
+    "start": "2026-08-10",
+    "end": "2026-08-21"
+  },
+  "issues": [
+    {
+      "key": "SVC-1",
+      "summary": "Microservice optimization — reduce cost/toil on platform services",
+      "status": "In Progress",
+      "priority": "High",
+      "assignee": { "name": "Kenji Watanabe", "email": "kenji.watanabe@example.com" },
+      "reporter": { "name": "Elena Goh", "title": "Director of Engineering", "email": "elena.goh@example.com" },
+      "due_date": "2026-09-30",
+      "updated": "2026-08-13T16:00:00+08:00",
+      "labels": ["optimization", "platform"],
+      "story_points": null,
+      "epic": null,
+      "issuetype": "Epic",
+      "description": "Scope is five services. Target 30 Sep 2026. Four have been updated. Two are fully optimized. Three remain. One remaining service is blocked on another team."
+    },
+    {
+      "key": "SVC-11",
+      "summary": "Optimize checkout-tax",
+      "status": "Done",
+      "priority": "High",
+      "assignee": { "name": "Linh Tran", "email": "linh.tran@example.com" },
+      "reporter": { "name": "Kenji Watanabe", "email": "kenji.watanabe@example.com" },
+      "due_date": "2026-08-07",
+      "updated": "2026-08-06T18:00:00+08:00",
+      "labels": ["optimization"],
+      "story_points": 5,
+      "epic": "SVC-1",
+      "resolution": "Done",
+      "resolution_date": "2026-08-06",
+      "description": "Optimized. Counted in the two completed services."
+    },
+    {
+      "key": "SVC-12",
+      "summary": "Optimize promo-engine",
+      "status": "Done",
+      "priority": "High",
+      "assignee": { "name": "Linh Tran", "email": "linh.tran@example.com" },
+      "reporter": { "name": "Kenji Watanabe", "email": "kenji.watanabe@example.com" },
+      "due_date": "2026-08-14",
+      "updated": "2026-08-12T11:30:00+08:00",
+      "labels": ["optimization"],
+      "story_points": 5,
+      "epic": "SVC-1",
+      "resolution": "Done",
+      "resolution_date": "2026-08-12",
+      "description": "Optimized. Counted in the two completed services."
+    },
+    {
+      "key": "SVC-13",
+      "summary": "Optimize session-gateway",
+      "status": "In Progress",
+      "priority": "High",
+      "assignee": { "name": "Omar Haddad", "email": "omar.haddad@example.com" },
+      "reporter": { "name": "Kenji Watanabe", "email": "kenji.watanabe@example.com" },
+      "due_date": "2026-09-11",
+      "updated": "2026-08-13T10:00:00+08:00",
+      "labels": ["optimization"],
+      "story_points": 8,
+      "epic": "SVC-1",
+      "description": "Updated this cycle. Not yet optimized. One of three remaining."
+    },
+    {
+      "key": "SVC-14",
+      "summary": "Optimize notify-dispatch",
+      "status": "In Progress",
+      "priority": "High",
+      "assignee": { "name": "Omar Haddad", "email": "omar.haddad@example.com" },
+      "reporter": { "name": "Kenji Watanabe", "email": "kenji.watanabe@example.com" },
+      "due_date": "2026-09-18",
+      "updated": "2026-08-13T10:05:00+08:00",
+      "labels": ["optimization"],
+      "story_points": 5,
+      "epic": "SVC-1",
+      "description": "Updated this cycle. Not yet optimized. One of three remaining."
+    },
+    {
+      "key": "SVC-15",
+      "summary": "Deprecate and replace legacy-auth",
+      "status": "Blocked",
+      "priority": "Highest",
+      "assignee": { "name": "Kenji Watanabe", "email": "kenji.watanabe@example.com" },
+      "reporter": { "name": "Kenji Watanabe", "email": "kenji.watanabe@example.com" },
+      "due_date": "2026-09-30",
+      "updated": "2026-08-14T08:40:00+08:00",
+      "labels": ["optimization", "blocked", "dependency"],
+      "story_points": 13,
+      "epic": "SVC-1",
+      "description": "One of three remaining. We plan to deprecate legacy-auth. Identity team still depends on it and cannot move off this sprint. They are busy; no date in this ticket for when they can migrate. This blocks hitting the 30 Sep deadline for the epic."
+    }
+  ]
+}

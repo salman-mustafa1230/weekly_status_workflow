@@ -1,0 +1,44 @@
+{
+  "source": "oncall_export",
+  "region": "SG",
+  "exported_at": "2026-08-14T08:00:00+08:00",
+  "timezone": "Asia/Singapore",
+  "incidents": [
+    {
+      "incident_id": "INC-18472",
+      "severity": "P2",
+      "title": "Stale menus in SG — XYZFood merchants showing yesterday's items",
+      "status": "resolved",
+      "started_at": "2026-08-06T18:22:00+08:00",
+      "resolved_at": "2026-08-06T21:45:00+08:00",
+      "duration_minutes": 203,
+      "services": ["menu-batch-pipeline", "xyzfood-sg"],
+      "customer_impact": "Subset of SG XYZFood merchants showed previous-day items and prices during dinner peak. Ops received merchant complaints via the hotline. No confirmed MY impact.",
+      "trigger": "Batch job overrun; storefront served a stale snapshot for ~3 hours.",
+      "immediate_mitigation": "Re-ran batch for affected merchant shard; forced cache purge.",
+      "root_cause_hypothesis": "Nightly batch duration now exceeds the window we assumed. This is the class of failure Harbor is supposed to remove.",
+      "follow_up_tickets": [],
+      "related_jira": [],
+      "oncall": "Jin Park",
+      "notes": "Resolved as an incident. No Harbor Jira risk or follow-up was filed. Batch pipeline is still the production path for SG."
+    },
+    {
+      "incident_id": "INC-18301",
+      "severity": "P3",
+      "title": "Grafana catalog board missing MY region filter",
+      "status": "resolved",
+      "started_at": "2026-08-04T11:10:00+08:00",
+      "resolved_at": "2026-08-04T12:02:00+08:00",
+      "duration_minutes": 52,
+      "services": ["observability"],
+      "customer_impact": "None. Internal dashboard only.",
+      "trigger": "Dashboard variable regression after a template edit.",
+      "immediate_mitigation": "Reverted dashboard JSON.",
+      "root_cause_hypothesis": "Unrelated to Harbor cutover.",
+      "follow_up_tickets": ["MENU-312"],
+      "related_jira": ["MENU-312"],
+      "oncall": "Marcus Lim",
+      "notes": "Noise. Do not treat as a Harbor go-live risk."
+    }
+  ]
+}

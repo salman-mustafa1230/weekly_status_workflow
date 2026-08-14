@@ -1,0 +1,479 @@
+{
+  "meta": {
+    "step": "normalize",
+    "as_of": "2026-08-14",
+    "status_week_ending": "2026-08-14",
+    "program": ["Project Harbor", "Microservice Optimization"],
+    "input": "extracted/raw-bundle.json",
+    "rule": "Extract claims with evidence. Do not resolve conflicts. Do not invent tickets, dates, or owners.",
+    "schemas_seen": {
+      "jira_issues.json": "project export with issues[]",
+      "slack_updates.json": "message list with ts/channel/author/text",
+      "tech_lead_update.json": "single weekly note object",
+      "incidents.json": "oncall export with incidents[]",
+      "product_notes.txt": "unsigned plain text",
+      "jira_service_optimization.json": "project export with issues[]"
+    }
+  },
+  "workstreams": [
+    {
+      "id": "catalog-platform",
+      "tickets": ["MENU-180", "MENU-255"],
+      "jira_statuses": { "MENU-180": "In Progress", "MENU-255": "In Progress" }
+    },
+    {
+      "id": "merchant-app",
+      "tickets": ["MENU-201"],
+      "jira_statuses": { "MENU-201": "In Progress" }
+    },
+    {
+      "id": "data-backfill",
+      "tickets": ["MENU-241"],
+      "jira_statuses": { "MENU-241": "Done" }
+    },
+    {
+      "id": "ops-playbook",
+      "tickets": ["MENU-268"],
+      "jira_statuses": { "MENU-268": "In Progress" }
+    },
+    {
+      "id": "sg-cutover",
+      "tickets": ["MENU-280"],
+      "jira_statuses": { "MENU-280": "In Progress" }
+    },
+    {
+      "id": "my-readiness",
+      "tickets": ["MENU-305"],
+      "jira_statuses": { "MENU-305": "On Track" }
+    },
+    {
+      "id": "observability",
+      "tickets": ["MENU-312"],
+      "jira_statuses": { "MENU-312": "To Do" }
+    },
+    {
+      "id": "microservice-optimization",
+      "tickets": ["SVC-1", "SVC-11", "SVC-12", "SVC-13", "SVC-14", "SVC-15"],
+      "jira_statuses": {
+        "SVC-1": "In Progress",
+        "SVC-11": "Done",
+        "SVC-12": "Done",
+        "SVC-13": "In Progress",
+        "SVC-14": "In Progress",
+        "SVC-15": "Blocked"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "id": "F001",
+      "theme": "sg_cutover_date",
+      "claim": "Committed SG go-live remains 28 Aug 2026; do not move without director approval.",
+      "value": "2026-08-28",
+      "workstream": "sg-cutover",
+      "source": { "file": "jira_issues.json", "ref": "MENU-280" },
+      "as_of": "2026-08-10T09:00:00+08:00",
+      "actor": "Siti Rahman"
+    },
+    {
+      "id": "F002",
+      "theme": "sg_cutover_date",
+      "claim": "Friday sponsor review still has SG go-live as 28 Aug.",
+      "value": "2026-08-28",
+      "workstream": "sg-cutover",
+      "source": { "file": "slack_updates.json", "ref": "S-1001" },
+      "as_of": "2026-08-10T09:41:00+08:00",
+      "actor": "Siti Rahman"
+    },
+    {
+      "id": "F003",
+      "theme": "sg_cutover_date",
+      "claim": "Jira looks mostly healthy; MENU-280 still 28 Aug. If engineering wants a different date it must be in writing today.",
+      "value": "2026-08-28",
+      "workstream": "sg-cutover",
+      "source": { "file": "slack_updates.json", "ref": "S-1010" },
+      "as_of": "2026-08-14T08:50:00+08:00",
+      "actor": "Siti Rahman"
+    },
+    {
+      "id": "F004",
+      "theme": "sg_cutover_date",
+      "claim": "Tech lead will not sign 28 Aug. Earliest date he will sign is Friday 4 Sep 2026 — that date is soak time after Priya returns (20 Aug) and after backfill has drained, not a newly committed go-live.",
+      "value": "2026-09-04 earliest-sign / not committed",
+      "workstream": "sg-cutover",
+      "source": { "file": "tech_lead_update.json", "ref": "proposed_sg_cutover" },
+      "as_of": "2026-08-13T19:20:00+08:00",
+      "actor": "Daniel Koh",
+      "note": "Note audience is engineering only; not yet shared with Product or sponsors. 4 Sep is a sign-off floor, not a decision."
+    },
+    {
+      "id": "F005",
+      "theme": "sg_cutover_date",
+      "claim": "Until lag is actually fixed, tech lead will not sign 28 Aug.",
+      "value": "will-not-sign-2026-08-28",
+      "workstream": "catalog-platform",
+      "source": { "file": "slack_updates.json", "ref": "S-1007" },
+      "as_of": "2026-08-13T09:22:00+08:00",
+      "actor": "Daniel Koh"
+    },
+    {
+      "id": "F028",
+      "theme": "sg_cutover_date",
+      "claim": "Product still has 28 Aug on the sponsor slide. We need a date decision this week or we will brief directors with two different dates (28 Aug vs 4 Sep).",
+      "value": "decision-needed-this-week / two-dates-in-circulation",
+      "workstream": "sg-cutover",
+      "source": { "file": "tech_lead_update.json", "ref": "body" },
+      "as_of": "2026-08-13T19:20:00+08:00",
+      "actor": "Daniel Koh"
+    },
+    {
+      "id": "F006",
+      "theme": "backfill_status",
+      "claim": "MENU-241 SG historical menu backfill is Done.",
+      "value": "Done",
+      "workstream": "data-backfill",
+      "source": { "file": "jira_issues.json", "ref": "MENU-241" },
+      "as_of": "2026-08-12T11:02:00+08:00",
+      "actor": "Wei Ming Tan"
+    },
+    {
+      "id": "F007",
+      "theme": "backfill_status",
+      "claim": "Wei closed MENU-241 because the DAG is live; backfill is still running in prod.",
+      "value": "closed-while-running",
+      "workstream": "data-backfill",
+      "source": { "file": "slack_updates.json", "ref": "S-1003" },
+      "as_of": "2026-08-12T11:18:00+08:00",
+      "actor": "Wei Ming Tan"
+    },
+    {
+      "id": "F008",
+      "theme": "backfill_status",
+      "claim": "Backfill at 62% of SG merchants; ETA Saturday 16 Aug (maybe Sunday). Ticket should be In Progress, not Done. ~2 day slip vs 11 Aug due date.",
+      "value": "62% / ETA 2026-08-16",
+      "workstream": "data-backfill",
+      "source": { "file": "slack_updates.json", "ref": "S-1004" },
+      "as_of": "2026-08-12T14:03:00+08:00",
+      "actor": "Arjun Patel"
+    },
+    {
+      "id": "F009",
+      "theme": "backfill_status",
+      "claim": "Backfill 71% as of 3pm 13 Aug. Still running. ETA Saturday 16 Aug.",
+      "value": "71% / ETA 2026-08-16",
+      "workstream": "data-backfill",
+      "source": { "file": "slack_updates.json", "ref": "S-1009" },
+      "as_of": "2026-08-13T15:30:00+08:00",
+      "actor": "Arjun Patel"
+    },
+    {
+      "id": "F010",
+      "theme": "backfill_status",
+      "claim": "Tech lead treats backfill kickoff as progress, not completion. Cutover should wait for drain + freshness audit. Note does not include % complete.",
+      "value": "running-not-complete",
+      "workstream": "data-backfill",
+      "source": { "file": "tech_lead_update.json", "ref": "gates.sg_backfill_complete" },
+      "as_of": "2026-08-13T19:20:00+08:00",
+      "actor": "Daniel Koh"
+    },
+    {
+      "id": "F011",
+      "theme": "consumer_lag",
+      "claim": "MENU-255 In Progress, assignee Priya Nair, due 20 Aug. Dinner peak lag 4–7 minutes. Gate: p95 < 60s for 7 days.",
+      "value": "In Progress / Priya Nair",
+      "workstream": "catalog-platform",
+      "source": { "file": "jira_issues.json", "ref": "MENU-255" },
+      "as_of": "2026-08-11T16:10:00+08:00",
+      "actor": "Priya Nair"
+    },
+    {
+      "id": "F012",
+      "theme": "consumer_lag",
+      "claim": "Priya is OOO from 12 Aug through 20 Aug. MENU-255 has not moved since Monday. No backup owner.",
+      "value": "owner-ooo-until-2026-08-20",
+      "workstream": "catalog-platform",
+      "source": { "file": "slack_updates.json", "ref": "S-1006" },
+      "as_of": "2026-08-13T09:05:00+08:00",
+      "actor": "Marcus Lim"
+    },
+    {
+      "id": "F013",
+      "theme": "consumer_lag",
+      "claim": "Daniel cannot cover MENU-255 this week. Asking Elena for a loaned engineer.",
+      "value": "no-active-owner",
+      "workstream": "catalog-platform",
+      "source": { "file": "slack_updates.json", "ref": "S-1007" },
+      "as_of": "2026-08-13T09:22:00+08:00",
+      "actor": "Daniel Koh"
+    },
+    {
+      "id": "F014",
+      "theme": "consumer_lag",
+      "claim": "Lag gate not met (4–7 min vs p95 < 60s for 7 days). No dated recovery plan the tech lead trusts.",
+      "value": "gate-not-met",
+      "workstream": "catalog-platform",
+      "source": { "file": "tech_lead_update.json", "ref": "gates.consumer_lag_dinner_peak" },
+      "as_of": "2026-08-13T19:20:00+08:00",
+      "actor": "Daniel Koh"
+    },
+    {
+      "id": "F015",
+      "theme": "my_readiness",
+      "claim": "MENU-305 status On Track, due 18 Sep. MY dual-run starts after SG producer is live. No MY-specific blockers.",
+      "value": "On Track / 2026-09-18",
+      "workstream": "my-readiness",
+      "source": { "file": "jira_issues.json", "ref": "MENU-305" },
+      "as_of": "2026-08-13T18:44:00+08:00",
+      "actor": "Farah Hassan"
+    },
+    {
+      "id": "F016",
+      "theme": "my_readiness",
+      "claim": "Product told Farah MY can stay on track if there are no local MY issues. MY stays gated on SG.",
+      "value": "gated-on-sg",
+      "workstream": "my-readiness",
+      "source": { "file": "slack_updates.json", "ref": "S-1001" },
+      "as_of": "2026-08-10T09:41:00+08:00",
+      "actor": "Siti Rahman"
+    },
+    {
+      "id": "F017",
+      "theme": "my_readiness",
+      "claim": "Farah: MY is green. No MY blockers. Keeping MENU-305 On Track for 18 Sep.",
+      "value": "green",
+      "workstream": "my-readiness",
+      "source": { "file": "slack_updates.json", "ref": "S-1008" },
+      "as_of": "2026-08-13T11:47:00+08:00",
+      "actor": "Farah Hassan"
+    },
+    {
+      "id": "F018",
+      "theme": "my_readiness",
+      "claim": "Tech lead has not reviewed MY in detail. If SG slips, MY 18 Sep is automatically at risk. He has not told Farah to change MENU-305.",
+      "value": "my-at-risk-if-sg-slips",
+      "workstream": "my-readiness",
+      "source": { "file": "tech_lead_update.json", "ref": "body" },
+      "as_of": "2026-08-13T19:20:00+08:00",
+      "actor": "Daniel Koh"
+    },
+    {
+      "id": "F019",
+      "theme": "incident_followup",
+      "claim": "INC-18472 P2 stale menus in SG, 6 Aug, 203 minutes, resolved. follow_up_tickets and related_jira are empty. Batch pipeline still production path for SG.",
+      "value": "resolved-no-jira-followup",
+      "workstream": "sg-cutover",
+      "source": { "file": "incidents.json", "ref": "INC-18472" },
+      "as_of": "2026-08-06T21:45:00+08:00",
+      "actor": "Jin Park"
+    },
+    {
+      "id": "F020",
+      "theme": "incident_followup",
+      "claim": "Jin: last week's stale-menu incident was painful; no Harbor ticket for the follow-up visible.",
+      "value": "followup-missing",
+      "workstream": "ops-playbook",
+      "source": { "file": "slack_updates.json", "ref": "S-1005" },
+      "as_of": "2026-08-12T16:40:00+08:00",
+      "actor": "Jin Park"
+    },
+    {
+      "id": "F021",
+      "theme": "incident_followup",
+      "claim": "INC-18472 is resolved as an incident; follow-up is not in Jira. Saying 'no open incidents' is technically true and not the full story.",
+      "value": "resolved-incomplete-story",
+      "workstream": "sg-cutover",
+      "source": { "file": "slack_updates.json", "ref": "S-1011" },
+      "as_of": "2026-08-14T09:10:00+08:00",
+      "actor": "Jin Park"
+    },
+    {
+      "id": "F022",
+      "theme": "producer_parity",
+      "claim": "SG producer in shadow mode; ~98% sample match vs batch. Target >= 99%. Gate not met.",
+      "value": "~98% / not met",
+      "workstream": "catalog-platform",
+      "source": { "file": "tech_lead_update.json", "ref": "gates.producer_shadow_parity" },
+      "as_of": "2026-08-13T19:20:00+08:00",
+      "actor": "Daniel Koh"
+    },
+    {
+      "id": "F023",
+      "theme": "merchant_app",
+      "claim": "MENU-201 In Progress, due 21 Aug. Staging happy path good; needs Priya lag numbers before production-ready.",
+      "value": "In Progress / conditional-on-lag",
+      "workstream": "merchant-app",
+      "source": { "file": "jira_issues.json", "ref": "MENU-201" },
+      "as_of": "2026-08-14T08:05:00+08:00",
+      "actor": "Marcus Lim"
+    },
+    {
+      "id": "F024",
+      "theme": "ops_playbook",
+      "claim": "MENU-268 In Progress, due 25 Aug. Draft in doc; rollback still needs Daniel sign-off.",
+      "value": "In Progress / rollback-unsigned",
+      "workstream": "ops-playbook",
+      "source": { "file": "jira_issues.json", "ref": "MENU-268" },
+      "as_of": "2026-08-13T12:20:00+08:00",
+      "actor": "Jin Park"
+    },
+    {
+      "id": "F025",
+      "theme": "red_herring",
+      "claim": "MENU-190 Open low-priority comms risk from week 3. Not currently blocking.",
+      "value": "Open / Low / stale",
+      "workstream": "sg-cutover",
+      "source": { "file": "jira_issues.json", "ref": "MENU-190" },
+      "as_of": "2026-07-22T10:00:00+08:00",
+      "actor": "Siti Rahman"
+    },
+    {
+      "id": "F026",
+      "theme": "red_herring",
+      "claim": "INC-18301 P3 Grafana MY filter, resolved, no customer impact. Linked to MENU-312. Notes say do not treat as Harbor go-live risk.",
+      "value": "P3 / resolved / noise",
+      "workstream": "observability",
+      "source": { "file": "incidents.json", "ref": "INC-18301" },
+      "as_of": "2026-08-04T12:02:00+08:00",
+      "actor": "Marcus Lim"
+    },
+    {
+      "id": "F027",
+      "theme": "cutover_risk",
+      "claim": "If we cut over 28 Aug with incomplete backfill, unmigrated SG merchants will show stale menus — same failure mode as last week.",
+      "value": "stale-menu-if-early-cutover",
+      "workstream": "data-backfill",
+      "source": { "file": "slack_updates.json", "ref": "S-1009" },
+      "as_of": "2026-08-13T15:30:00+08:00",
+      "actor": "Arjun Patel"
+    },
+    {
+      "id": "F029",
+      "theme": "work_complete",
+      "claim": "All tasks are completed perfectly; only Jira is not updated; we can meet the deadline.",
+      "value": "complete / Jira-stale / deadline-hittable",
+      "workstream": "sg-cutover",
+      "source": { "file": "product_notes.txt", "ref": "body" },
+      "as_of": null,
+      "actor": null,
+      "note": "Unsigned and undated. Does not name which deadline or which tasks."
+    },
+    {
+      "id": "F030",
+      "theme": "svc_deadline",
+      "claim": "Microservice optimization epic SVC-1 is due 30 Sep 2026. Five services in scope; four updated; two fully optimized; three remain.",
+      "value": "due 2026-09-30 / 2 of 5 optimized / 3 remaining",
+      "workstream": "microservice-optimization",
+      "source": { "file": "jira_service_optimization.json", "ref": "SVC-1" },
+      "as_of": "2026-08-13T16:00:00+08:00",
+      "actor": "Kenji Watanabe"
+    },
+    {
+      "id": "F031",
+      "theme": "svc_progress",
+      "claim": "checkout-tax (SVC-11) optimized, Done.",
+      "value": "Done",
+      "workstream": "microservice-optimization",
+      "source": { "file": "jira_service_optimization.json", "ref": "SVC-11" },
+      "as_of": "2026-08-06T18:00:00+08:00",
+      "actor": "Linh Tran"
+    },
+    {
+      "id": "F032",
+      "theme": "svc_progress",
+      "claim": "promo-engine (SVC-12) optimized, Done.",
+      "value": "Done",
+      "workstream": "microservice-optimization",
+      "source": { "file": "jira_service_optimization.json", "ref": "SVC-12" },
+      "as_of": "2026-08-12T11:30:00+08:00",
+      "actor": "Linh Tran"
+    },
+    {
+      "id": "F033",
+      "theme": "svc_progress",
+      "claim": "session-gateway (SVC-13) updated, not yet optimized.",
+      "value": "In Progress",
+      "workstream": "microservice-optimization",
+      "source": { "file": "jira_service_optimization.json", "ref": "SVC-13" },
+      "as_of": "2026-08-13T10:00:00+08:00",
+      "actor": "Omar Haddad"
+    },
+    {
+      "id": "F034",
+      "theme": "svc_progress",
+      "claim": "notify-dispatch (SVC-14) updated, not yet optimized.",
+      "value": "In Progress",
+      "workstream": "microservice-optimization",
+      "source": { "file": "jira_service_optimization.json", "ref": "SVC-14" },
+      "as_of": "2026-08-13T10:05:00+08:00",
+      "actor": "Omar Haddad"
+    },
+    {
+      "id": "F035",
+      "theme": "svc_blocker",
+      "claim": "legacy-auth (SVC-15) is Blocked. Plan is to deprecate it. Identity team still depends on it and cannot move off this sprint. Ticket says this blocks hitting the 30 Sep epic deadline. No date in the ticket for when Identity can migrate.",
+      "value": "Blocked / Identity dependency / 30 Sep at risk",
+      "workstream": "microservice-optimization",
+      "source": { "file": "jira_service_optimization.json", "ref": "SVC-15" },
+      "as_of": "2026-08-14T08:40:00+08:00",
+      "actor": "Kenji Watanabe"
+    }
+  ],
+  "conflicts": [
+    {
+      "id": "C001",
+      "topic": "SG go-live date",
+      "claim_ids": ["F001", "F002", "F003", "F004", "F005", "F028"],
+      "summary": "Two dates are in circulation. 28 Aug is the committed slide/Jira date. 4 Sep is the earliest Daniel will sign (Priya back 20 Aug + soak), not a new committed date. If sponsors do not pick one this week, directors get briefed with both.",
+      "resolution": null
+    },
+    {
+      "id": "C002",
+      "topic": "SG backfill completeness",
+      "claim_ids": ["F006", "F007", "F008", "F009", "F010"],
+      "summary": "Jira MENU-241 is Done. Latest operational evidence (Arjun, 13 Aug 15:30) is 71% complete, ETA 16 Aug. Wei closed the ticket at DAG start.",
+      "resolution": null
+    },
+    {
+      "id": "C003",
+      "topic": "MENU-255 ownership",
+      "claim_ids": ["F011", "F012", "F013", "F014"],
+      "summary": "Jira shows In Progress with Priya as assignee. Slack says Priya is on leave until 20 Aug and there is no backup owner.",
+      "resolution": null
+    },
+    {
+      "id": "C004",
+      "topic": "MY readiness RAG",
+      "claim_ids": ["F015", "F016", "F017", "F018"],
+      "summary": "MY ticket and Farah report green/on track. MY is gated on SG. Tech lead says 18 Sep is automatically at risk if SG slips; MENU-305 has not been changed.",
+      "resolution": null
+    },
+    {
+      "id": "C005",
+      "topic": "P2 stale-menu follow-up",
+      "claim_ids": ["F019", "F020", "F021", "F027"],
+      "summary": "No open incidents. INC-18472 has no Jira follow-up. Batch is still SG production. Same failure mode is cited if 28 Aug cutover proceeds with incomplete backfill.",
+      "resolution": null
+    },
+    {
+      "id": "C006",
+      "topic": "Unsigned product note vs named operational evidence",
+      "claim_ids": ["F029", "F004", "F009", "F012", "F014"],
+      "summary": "product_notes.txt says all work is done, Jira is stale, and the deadline is hittable. No author or timestamp. Named sources (Daniel will not sign 28 Aug; Arjun 71% backfill; Priya OOO / lag gate unmet) contradict a Green / on-time call.",
+      "resolution": null
+    },
+    {
+      "id": "C007",
+      "topic": "SVC 30 Sep vs Identity block on legacy-auth",
+      "claim_ids": ["F030", "F035"],
+      "summary": "Epic due 30 Sep. SVC-15 Blocked on Identity; ticket says this blocks the deadline. No Identity owner named and no migrate-by date. No Slack or eng note in the pack.",
+      "resolution": null
+    }
+  ],
+  "open_questions": [
+    "Will sponsors keep 28 Aug, move to 4 Sep, or accept 28 Aug with unmet gates? Decision is needed this week so directors are not briefed with two dates.",
+    "Who owns MENU-255 while Priya is out, and did Elena approve a loaned engineer?",
+    "Exact backfill % as of Friday 14 Aug morning (last reading is 71% on 13 Aug 15:30)?",
+    "Who wrote product_notes.txt, when, and which deadline they mean?",
+    "Microservice optimization: will Identity give a date to leave legacy-auth, or is 30 Sep already dead?"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "doc_type": "weekly_eng_note",
+  "program": "Project Harbor",
+  "author": "Daniel Koh",
+  "role": "Tech Lead, Catalog Platform",
+  "week_ending": "2026-08-14",
+  "written_on": "2026-08-13T19:20:00+08:00",
+  "audience": "Engineering only — not yet shared with Product or sponsors",
+  "headline": "Producer is in SG shadow mode. I will not sign a 28 Aug cutover.",
+  "proposed_sg_cutover": "2026-09-04",
+  "current_committed_date_on_slides": "2026-08-28",
+  "body": "Week 8 note.\n\nProducer path is in shadow mode in SG and matching batch output on ~98% of sampled merchants. That is the good news.\n\nTwo gates are not met:\n1) Catalog consumer lag under dinner peak is still 4–7 minutes (gate is p95 < 60s for 7 days). MENU-255 is the work. I do not have a dated recovery plan I trust.\n2) Historical backfill was kicked off this week. I am treating kickoff as progress, not completion. We should not cut over until backfill has drained and we have done a freshness audit.\n\nGiven those gates, 28 Aug is not a responsible cutover date. Earliest date I will sign is Friday 4 Sep 2026, which gives us a week after Priya is back and after backfill drain for soak.\n\nProduct still has 28 Aug on the sponsor slide. We need a date decision this week or we will brief directors with two different dates.\n\nMY: I have not reviewed MY readiness in detail. If SG slips, MY 18 Sep is automatically at risk. I have not told Farah to change MENU-305.\n\nI am not covering incident write-ups in this note; ops owns those.",
+  "gates": [
+    {
+      "name": "producer_shadow_parity",
+      "target": ">= 99% sample match vs batch",
+      "current": "~98%",
+      "met": false
+    },
+    {
+      "name": "consumer_lag_dinner_peak",
+      "target": "p95 < 60s for 7 consecutive days",
+      "current": "4–7 minutes",
+      "met": false
+    },
+    {
+      "name": "sg_backfill_complete",
+      "target": "100% SG merchants drained + freshness audit",
+      "current": "job running; % complete not in this note",
+      "met": false
+    }
+  ],
+  "asks": [
+    "Director decision: move SG cutover from 28 Aug to 4 Sep, or accept cutover with unmet lag/backfill gates.",
+    "Loaned engineer for MENU-255 while Priya is out — not named in this note; see Slack."
+  ]
+}
